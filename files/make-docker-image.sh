@@ -68,6 +68,12 @@ if [ -z "$version" ]; then
     version=$name
 fi
 
+mkdir -p "$target"/etc/yum.repos.d
+rm "$target"/var/lib/rpm/* "$target"/etc/yum.repos.d/*
+cp /root/mkimage/gpg/* "$target"/etc/pki/rpm-gpg/
+cp /root/mkimage/yum.repos.d/* "$target"/etc/yum.repos.d/
+sed -i'' 's#gpgkey=.*#gpgkey=file:///etc/pki/rpm-gpg/CentOS-5-Vault-Base.repo#g' "$target"/etc/yum.repos.d/*CentOS-5-Vault*.repo
+
 tar --numeric-owner -c -C "$target" -zf /output/$name.tar.gz .
 rm -rf "$target"
 
