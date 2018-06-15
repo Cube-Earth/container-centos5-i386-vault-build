@@ -8,3 +8,5 @@ services:
             - https_proxy
             - no_proxy
     image: tmp_centos5-i386-vault
+    volumes:
+    - ./output:/output
