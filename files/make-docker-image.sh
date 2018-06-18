@@ -68,6 +68,8 @@ if [ -z "$version" ]; then
     version=$name
 fi
 
+echo "%_netsharedpath /sys" >> "$target"/etc/rpm/macros 
+
 mkdir -p "$target"/etc/yum.repos.d
 rm "$target"/var/lib/rpm/* "$target"/etc/yum.repos.d/*
 cp /root/mkimage/gpg/* "$target"/etc/pki/rpm-gpg/
